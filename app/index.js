@@ -481,7 +481,7 @@ async function getApproved(){
 }
 
 async function getPoolBalance(){
-	let poolBalance = await paidPool.getBalance()
+	let poolBalance = await paidPool.balance()
 	poolBalance = ethers.utils.formatUnits(poolBalance,decimals)
 	poolBalance = ethers.utils.commify(poolBalance)
 	return(poolBalance)
