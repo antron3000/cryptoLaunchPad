@@ -3,6 +3,77 @@ const paidPoolABI = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "_Paid",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_depositLimit",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "Paid",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "allocations",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "ethRequired",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountPaidOut",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "balance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "token",
 				"type": "address"
 			},
@@ -49,6 +120,19 @@ const paidPoolABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "depositLimit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -75,24 +159,27 @@ const paidPoolABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_Paid",
+				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_depositLimit",
-				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "balance",
+		"name": "shares",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -487,6 +574,22 @@ async function getPoolBalance(){
 	poolBalance = ethers.utils.formatUnits(poolBalance,decimals)
 	poolBalance = ethers.utils.commify(poolBalance)
 	return(poolBalance)
+}
+
+async function getDepositLimit() {
+	let depositLimit = await paidPool.depositLimit()
+	depositLimit = ethers.utils.formatUnits(depositLimit,decimals)
+	depositLimit = ethers.utils.commify(depositLimit)
+	return(depositLimit)
+}
+
+async function getDepositable(){
+	let poolBalance = await paidPool.balance()
+	let depositLimit = await paidPool.depositLimit()]
+	let depositable = depositable.sub(poolBalance)
+	depositable = ethers.utils.formatUnits(depositable,decimals)
+	depositable = ethers.utils.commify(depositable)
+	return(depositable)
 }
 
 async function approve() {
