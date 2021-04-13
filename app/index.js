@@ -480,6 +480,13 @@ async function getApproved(){
 
 }
 
+async function getPoolBalance(){
+	let poolBalance = await paidPool.getBalance()
+	poolBalance = ethers.utils.formatUnits(poolBalance,decimals)
+	poolBalance = ethers.utils.commify(poolBalance)
+	return(poolBalance)
+}
+
 async function approve() {
   let amount = document.getElementById("approveAmount").value;
   amount = ethers.utils.parseUnits(amount, decimals)
