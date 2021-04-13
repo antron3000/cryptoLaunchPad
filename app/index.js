@@ -570,22 +570,22 @@ async function getApproved(){
 }
 
 async function getPoolBalance(){
-	let poolBalance = await paidPool.balance()
+	let poolBalance = await paidPoolPersistent.balance()
 	poolBalance = ethers.utils.formatUnits(poolBalance,decimals)
 	poolBalance = ethers.utils.commify(poolBalance)
 	return(poolBalance)
 }
 
 async function getDepositLimit() {
-	let depositLimit = await paidPool.depositLimit()
+	let depositLimit = await paidPoolPersistent.depositLimit()
 	depositLimit = ethers.utils.formatUnits(depositLimit,decimals)
 	depositLimit = ethers.utils.commify(depositLimit)
 	return(depositLimit)
 }
 
 async function getDepositable(){
-	let poolBalance = await paidPool.balance()
-	let depositLimit = await paidPool.depositLimit()]
+	let poolBalance = await paidPoolPersistent.balance()
+	let depositLimit = await paidPoolPersistent.depositLimit()]
 	let depositable = depositable.sub(poolBalance)
 	depositable = ethers.utils.formatUnits(depositable,decimals)
 	depositable = ethers.utils.commify(depositable)
