@@ -585,7 +585,7 @@ async function getDepositLimit() {
 
 async function getDepositable(){
 	let poolBalance = await paidPoolPersistent.balance()
-	let depositLimit = await paidPoolPersistent.depositLimit()]
+	let depositLimit = await paidPoolPersistent.depositLimit()
 	let depositable = depositable.sub(poolBalance)
 	depositable = ethers.utils.formatUnits(depositable,decimals)
 	depositable = ethers.utils.commify(depositable)
