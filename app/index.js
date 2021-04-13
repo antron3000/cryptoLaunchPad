@@ -193,7 +193,7 @@ const paidPoolABI = [
 ]
 let paidPool
 let paidPoolPersistent
-let paidPoolAddress = "0xDB5bB3805608eE7a53fDfEff61Dd26096451f476"
+let paidPoolAddress = "0x9A9949b4354569639674bBa7C3A8FdE069a407bB"
 
 let provider
 let signer
