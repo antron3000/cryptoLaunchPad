@@ -105,6 +105,7 @@ const paidPoolABI = [
 	}
 ]
 let paidPool
+let paidPoolPersistent
 let paidPoolAddress = "0xDB5bB3805608eE7a53fDfEff61Dd26096451f476"
 
 let provider
@@ -438,6 +439,7 @@ let eventLogs
 
 async function initialize(web3) {
 	let paidPersistent = new ethers.Contract(paidAddress,paidABI,persistentProvider)
+	let paidPoolPersistent = new ethers.Contract(paidPoolAddress,paidPoolABI,persistentProvider)
 	decimals = await paidPersistent.decimals()
   symbol = await paidPersistent.symbol()
 
@@ -449,7 +451,7 @@ async function initialize(web3) {
 
   let EthBalance = ethers.utils.formatEther(await signer.getBalance())
 
-	paidPool = new ethers.Contract(paidPoolAddress,paidABI,signer)
+	paidPool = new ethers.Contract(paidPoolAddress,paidPoolABI,signer)
 	paid = new ethers.Contract(paidAddress,paidABI,signer)
 
   await getBalance()
